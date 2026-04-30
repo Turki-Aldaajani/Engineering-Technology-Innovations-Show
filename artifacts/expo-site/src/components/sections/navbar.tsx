@@ -30,7 +30,7 @@ export function Navbar() {
       }`}
     >
       <div className="container mx-auto px-4 md:px-8 flex items-center justify-between">
-        <a href="/" className="block">
+        <a href={import.meta.env.BASE_URL} className="block">
           <ExpoLogo variant={scrolled ? "default" : "white"} />
         </a>
 
