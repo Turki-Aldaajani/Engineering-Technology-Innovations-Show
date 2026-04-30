@@ -142,7 +142,7 @@ export default function Register() {
         email: formData.email,
         phone: formData.phone,
         type: formData.type as "visitor" | "exhibitor" | "sponsor",
-        boothId: selectedBooth?.id ?? null,
+        boothNumber: selectedBooth?.number ?? null,
         message: formData.message || null,
       },
     });

@@ -1,204 +1,277 @@
-# معرض الابتكارات الهندسية والتقنية 2026
-### Engineering & Technology Innovation Expo — 1447 هـ
+<div align="center">
 
-> منصة تسجيل وعرض تفاعلية لمعرض الابتكارات الهندسية والتقنية  
-> بكلية الهندسة — جامعة الإمام محمد بن سعود الإسلامية
+<img src="https://raw.githubusercontent.com/Turki-Aldaajani/Engineering-Technology-Innovations-Show/main/assets/expo-logo.png" alt="Expo Logo" width="120" />
 
----
+# معرض الابتكارات الهندسية والتقنية
+## Engineering & Technology Innovation Expo
 
-## نظرة عامة | Overview
+**١٦ – ١٧ سبتمبر ٢٠٢٦ م | ١٤٤٧ هـ**
 
-موقع تفاعلي متكامل لمعرض "معرض الابتكارات الهندسية والتقنية 2026" المُقام يومي **16 و17 سبتمبر 1446هـ / 2026م** في مبنى المؤتمرات بالمدينة الجامعية. يتيح الموقع تسجيل الزوار والعارضين، وإدارة طلبات الحضور، ومتابعة الفعاليات.
-
----
-
-## الصفحات والأقسام | Pages & Sections
-
-### الصفحة الرئيسية `/`
-| القسم | الوصف |
-|---|---|
-| Hero | شاشة ترحيبية مع زرَّي تسجيل وحجز بوث |
-| About | نبذة تعريفية عن المعرض |
-| Audience | الفئات المستهدفة |
-| Why | مزايا المشاركة |
-| Speakers | المتحدثون |
-| Workshops | ورش العمل |
-| Sponsors & Partners | الرعاة والشركاء الأكاديميون |
-| FAQ | الأسئلة الشائعة (9 أسئلة) |
-| Footer | معلومات التواصل وروابط سريعة |
-
-### صفحة التسجيل `/register`
-- تسجيل **الزوار**: اختيار مدة الزيارة (16 أو 17 سبتمبر أو اليومين) → التحقق بـ OTP → عرض QR Code
-- تسجيل **العارضين**: اختيار بوث من الخريطة التفاعلية → صفحة تأكيد + بيانات ضابط الاتصال
-- تحقق كامل من صيغة الجوال والبريد الإلكتروني
-
-### لوحة تحكم المشرفين `/admin`
-- إحصاءات فورية (إجمالي / قيد الانتظار / مقبول / مرفوض)
-- جداول طلبات الزوار والبوثات مع أزرار قبول ورفض
-- فلترة حسب الحالة
-
-### صفحة المنظم الميداني `/organizer`
-- عداد الزوار الحي (Check-in Dashboard)
-- مسح QR بالكاميرا (UI جاهز للربط بالباكند)
-- إدخال رقم التذكرة يدوياً والتحقق منه
-- سجل آخر عمليات المسح مع الحالة
-- تسجيل يدوي للزوار عند الحاجة
+كلية الهندسة — جامعة الإمام محمد بن سعود الإسلامية
 
 ---
 
-## التقنيات المستخدمة | Tech Stack
+![React](https://img.shields.io/badge/React-18-61DAFB?style=flat-square&logo=react&logoColor=white)
+![TypeScript](https://img.shields.io/badge/TypeScript-5-3178C6?style=flat-square&logo=typescript&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-5-646CFF?style=flat-square&logo=vite&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/Tailwind_CSS-v4-06B6D4?style=flat-square&logo=tailwindcss&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-4169E1?style=flat-square&logo=postgresql&logoColor=white)
+![License](https://img.shields.io/badge/License-Academic-1B8354?style=flat-square)
 
-| التقنية | الاستخدام |
-|---|---|
-| **React 18** | بناء الواجهة |
-| **TypeScript** | سلامة الأنواع |
-| **Vite** | بيئة التطوير والبناء |
-| **Tailwind CSS v4** | التنسيق والهوية البصرية |
-| **shadcn/ui + Radix UI** | مكوّنات الواجهة |
-| **Framer Motion** | الحركة والانتقالات |
-| **wouter** | التوجيه (Routing) |
-| **IBM Plex Sans Arabic** | الخط الرسمي |
-| **Material Icons** | الأيقونات |
-| **TanStack Query** | إدارة الحالة وجلب البيانات |
-| **Express.js** | خادم API الخلفي |
-| **Drizzle ORM + PostgreSQL** | قاعدة البيانات |
+</div>
 
 ---
 
-## هيكل المشروع | Project Structure
+## 📋 نظرة عامة | Overview
+
+منصة رقمية متكاملة لإدارة **معرض الابتكارات الهندسية والتقنية ٢٠٢٦**، تتيح:
+
+- 🎫 **تسجيل الزوار والعارضين** مع نظام OTP وQR Code
+- 🗺️ **خريطة البوثات التفاعلية** لاختيار وحجز المواقع
+- 🛡️ **لوحة تحكم المشرفين** لإدارة وقبول الطلبات
+- 📱 **صفحة المنظم الميداني** مع مسح QR وتسجيل الحضور
+- ❓ **قسم الأسئلة الشائعة** الشامل
+- 🌐 واجهة **RTL عربية** بالكامل مع هوية بصرية سعودية خضراء
+
+---
+
+## 🗂️ هيكل المشروع | Project Structure
 
 ```
 Engineering-Technology-Innovations-Show/
 │
-├── artifacts/
-│   ├── expo-site/                  # الموقع الأمامي (Frontend)
-│   │   ├── public/
-│   │   │   ├── expo-logo.png       # شعار المعرض
-│   │   │   ├── opengraph.jpg       # صورة المشاركة الاجتماعية
-│   │   │   └── favicon.svg
-│   │   └── src/
-│   │       ├── components/
-│   │       │   ├── sections/       # أقسام الصفحة الرئيسية
-│   │       │   │   ├── navbar.tsx
-│   │       │   │   ├── hero.tsx
-│   │       │   │   ├── about.tsx
-│   │       │   │   ├── audience.tsx
-│   │       │   │   ├── why.tsx
-│   │       │   │   ├── speakers.tsx
-│   │       │   │   ├── workshops.tsx
-│   │       │   │   ├── sponsors-partners.tsx
-│   │       │   │   ├── faq.tsx
-│   │       │   │   ├── contact-footer.tsx
-│   │       │   │   └── booth-map.tsx
-│   │       │   ├── ui/             # مكوّنات shadcn/ui
-│   │       │   └── ExpoLogo.tsx
-│   │       ├── pages/
-│   │       │   ├── home.tsx        # الصفحة الرئيسية
-│   │       │   ├── register.tsx    # التسجيل (زائر / عارض / راعٍ)
-│   │       │   ├── admin.tsx       # لوحة تحكم المشرفين
-│   │       │   ├── organizer.tsx   # صفحة المنظم الميداني
-│   │       │   └── not-found.tsx
-│   │       ├── App.tsx             # التوجيه الرئيسي
-│   │       └── main.tsx
+├── 📁 src/
+│   ├── 📁 pages/                   # صفحات التطبيق
+│   │   ├── home.tsx                # الصفحة الرئيسية
+│   │   ├── register.tsx            # تسجيل الزوار والعارضين
+│   │   ├── admin.tsx               # لوحة تحكم المشرفين
+│   │   └── organizer.tsx           # صفحة المنظم الميداني
 │   │
-│   └── api-server/                 # الخادم الخلفي (Backend)
-│       └── src/
-│           └── routes/             # مسارات API
+│   ├── 📁 components/
+│   │   ├── 📁 sections/            # أقسام الصفحة الرئيسية
+│   │   │   ├── navbar.tsx          # شريط التنقل
+│   │   │   ├── hero.tsx            # الشاشة الترحيبية
+│   │   │   ├── about.tsx           # عن المعرض
+│   │   │   ├── audience.tsx        # الفئات المستهدفة
+│   │   │   ├── why.tsx             # لماذا تشارك؟
+│   │   │   ├── speakers.tsx        # المتحدثون
+│   │   │   ├── workshops.tsx       # ورش العمل
+│   │   │   ├── sponsors-partners.tsx # الرعاة والشركاء
+│   │   │   ├── faq.tsx             # الأسئلة الشائعة
+│   │   │   ├── contact-footer.tsx  # الفوتر والتواصل
+│   │   │   └── booth-map.tsx       # خريطة البوثات
+│   │   └── 📁 ui/                  # مكوّنات shadcn/ui
+│   │
+│   └── App.tsx                     # التوجيه الرئيسي
 │
-├── lib/
-│   ├── db/                         # مخطط قاعدة البيانات
-│   │   └── src/schema/
-│   │       ├── registrations.ts    # جدول التسجيلات
-│   │       └── booths.ts           # جدول البوثات
-│   └── api-spec/                   # مواصفات OpenAPI
+├── 📁 assets/
+│   ├── 📁 images/
+│   │   └── opengraph.jpg           # صورة المشاركة الاجتماعية
+│   └── 📁 logos/
+│       └── expo-logo.png           # شعار المعرض
 │
 └── README.md
 ```
 
 ---
 
-## الهوية البصرية | Brand Identity
+## 🎨 الهوية البصرية | Brand Identity
 
-| العنصر | القيمة |
-|---|---|
-| اللون الأساسي | `#1B8354` — Saudi Green |
-| لون الخلفية | `#F5F7F5` |
-| لون النص الأساسي | `#161616` |
-| لون النص الثانوي | `#525252` |
-| لون الحدود | `#E6E6E6` |
-| الخط | IBM Plex Sans Arabic |
-| الاتجاه | RTL (يمين إلى يسار) |
+<div align="center">
+
+| العنصر | القيمة | المعاينة |
+|:---:|:---:|:---:|
+| اللون الأساسي | `#1B8354` | ![#1B8354](https://via.placeholder.com/60x20/1B8354/FFFFFF?text=+) |
+| الخلفية | `#F5F7F5` | ![#F5F7F5](https://via.placeholder.com/60x20/F5F7F5/161616?text=+) |
+| النص الأساسي | `#161616` | ![#161616](https://via.placeholder.com/60x20/161616/FFFFFF?text=+) |
+| النص الثانوي | `#525252` | ![#525252](https://via.placeholder.com/60x20/525252/FFFFFF?text=+) |
+| الحدود | `#E6E6E6` | ![#E6E6E6](https://via.placeholder.com/60x20/E6E6E6/161616?text=+) |
+
+</div>
+
+- **الخط:** IBM Plex Sans Arabic
+- **الاتجاه:** RTL (يمين إلى يسار)
+- **الأيقونات:** Material Icons
 
 ---
 
-## إعداد المشروع | Setup
+## 🖥️ الصفحات | Pages
 
-### المتطلبات
-- Node.js 18+
-- pnpm 8+
-- PostgreSQL
+### 🏠 الصفحة الرئيسية `/`
+> الواجهة الرئيسية للزوار تعرض معلومات المعرض كاملةً
 
-### تثبيت وتشغيل
+| القسم | الوصف |
+|:---|:---|
+| **Hero** | شاشة ترحيبية مع أزرار تسجيل وحجز بوث |
+| **About** | نبذة تعريفية شاملة عن المعرض |
+| **Audience** | الفئات المستهدفة من الطلاب والشركات |
+| **Why** | مزايا وأسباب المشاركة |
+| **Speakers** | المتحدثون ونبذ عنهم |
+| **Workshops** | ورش العمل التقنية |
+| **Sponsors & Partners** | الرعاة والشركاء الأكاديميون |
+| **FAQ** | 9 أسئلة شائعة مع إجاباتها |
+| **Footer** | معلومات التواصل وروابط سريعة |
+
+---
+
+### 📝 صفحة التسجيل `/register`
+> نظام تسجيل ثلاثي المراحل
+
+```
+النموذج ──► التحقق بـ OTP ──► صفحة النجاح + QR Code
+```
+
+**للزوار:**
+- ✅ اختيار مدة الزيارة: ١٦ سبتمبر، ١٧ سبتمبر، أو اليومين
+- ✅ التحقق من رقم الجوال (١٠ أرقام تبدأ بـ ٠٥) والبريد الإلكتروني
+- ✅ إدخال رمز OTP من ٦ خانات
+- ✅ عرض QR Code مع رقم التذكرة
+
+**للعارضين:**
+- ✅ اختيار بوث من الخريطة التفاعلية
+- ✅ صفحة تأكيد مع بيانات ضابط الاتصال
+
+---
+
+### 🛡️ لوحة التحكم `/admin`
+> إدارة جميع طلبات التسجيل
+
+- 📊 إحصاءات فورية (إجمالي / قيد الانتظار / مقبول / مرفوض)
+- 👥 جدول طلبات الزوار مع قبول/رفض فردي
+- 🏪 جدول طلبات البوثات مع نوع الجهة ورقم البوث
+- 🔍 فلترة الطلبات حسب الحالة
+
+---
+
+### 📲 صفحة المنظم `/organizer`
+> إدارة الحضور الميداني يوم الفعالية
+
+- 📡 **عداد الزوار الحي** — جاهز للربط بقاعدة البيانات
+- 📷 **ماسح QR** — إطار بصري مع خط مسح متحرك + ربط الكاميرا لاحقاً
+- ⌨️ **إدخال يدوي** لرقم التذكرة للتحقق منها
+- 📋 **سجل عمليات المسح** مع حالة كل زيارة
+- ✍️ **تسجيل يدوي** للزوار عند الحاجة
+
+---
+
+## ⚙️ التقنيات | Tech Stack
+
+<div align="center">
+
+| الطبقة | التقنية | الغرض |
+|:---:|:---:|:---:|
+| **Frontend** | React 18 + TypeScript | بناء الواجهة |
+| **Build Tool** | Vite 5 | التطوير والبناء |
+| **Styling** | Tailwind CSS v4 | التنسيق |
+| **Components** | shadcn/ui + Radix UI | مكوّنات الواجهة |
+| **Animation** | Framer Motion | الحركة والانتقالات |
+| **Routing** | wouter | التوجيه |
+| **State** | TanStack Query | إدارة البيانات |
+| **Backend** | Express.js | خادم API |
+| **Database** | PostgreSQL + Drizzle ORM | قاعدة البيانات |
+| **Font** | IBM Plex Sans Arabic | الخط الرسمي |
+| **Icons** | Material Icons | الأيقونات |
+
+</div>
+
+---
+
+## 🌐 الموقع المنشور | Live Demo
+
+> بعد رفع الملفات لـ GitHub وتفعيل Pages سيظهر الرابط هنا:
+
+```
+https://Turki-Aldaajani.github.io/Engineering-Technology-Innovations-Show/
+```
+
+[![Deploy to GitHub Pages](https://github.com/Turki-Aldaajani/Engineering-Technology-Innovations-Show/actions/workflows/deploy-gh-pages.yml/badge.svg)](https://github.com/Turki-Aldaajani/Engineering-Technology-Innovations-Show/actions/workflows/deploy-gh-pages.yml)
+
+---
+
+## 🚀 تشغيل المشروع | Getting Started
+
+### المتطلبات الأساسية
+
+- Node.js `>= 18`
+- pnpm `>= 8`
+- PostgreSQL `>= 14`
+
+### خطوات الإعداد
 
 ```bash
-# تثبيت المكتبات
+# 1️⃣ استنساخ المستودع
+git clone https://github.com/Turki-Aldaajani/Engineering-Technology-Innovations-Show.git
+cd Engineering-Technology-Innovations-Show
+
+# 2️⃣ تثبيت المكتبات
 pnpm install
 
-# إعداد قاعدة البيانات
+# 3️⃣ إعداد متغيرات البيئة
+cp .env.example .env
+# ثم عدّل القيم في ملف .env
+
+# 4️⃣ إعداد قاعدة البيانات
 pnpm --filter @workspace/db run push
 
-# تشغيل الموقع
-pnpm --filter @workspace/expo-site dev
-
-# تشغيل الخادم
-pnpm --filter @workspace/api-server dev
+# 5️⃣ تشغيل الموقع والخادم
+pnpm --filter @workspace/expo-site dev   # الواجهة الأمامية
+pnpm --filter @workspace/api-server dev  # الخادم الخلفي
 ```
 
 ### متغيرات البيئة
 
 ```env
 DATABASE_URL=postgresql://user:password@localhost:5432/expo_db
-SESSION_SECRET=your_secret_key
+SESSION_SECRET=your_secret_key_here
 PORT=3000
 ```
 
 ---
 
-## مسارات API | API Endpoints
+## 🔌 واجهة API | API Reference
 
 | الطريقة | المسار | الوصف |
-|---|---|---|
-| `GET` | `/api/registrations` | جلب جميع التسجيلات |
-| `POST` | `/api/registrations` | إنشاء تسجيل جديد |
-| `PATCH` | `/api/registrations/:id/status` | تحديث حالة التسجيل |
-| `GET` | `/api/booths` | جلب البوثات المتاحة |
+|:---:|:---|:---|
 | `GET` | `/api/healthz` | فحص صحة الخادم |
+| `GET` | `/api/booths` | جلب البوثات المتاحة |
+| `POST` | `/api/registrations` | إنشاء تسجيل جديد |
+| `GET` | `/api/registrations` | جلب جميع التسجيلات |
+| `PATCH` | `/api/registrations/:id/status` | تحديث حالة التسجيل |
 
 ---
 
-## الفعاليات | Event Details
+## 📅 تفاصيل الفعالية | Event Details
 
-| التفصيل | المعلومات |
-|---|---|
-| **التاريخ** | 16 و 17 سبتمبر 2026 — 1447هـ |
-| **الوقت** | 1:00 ظهراً — 5:00 مساءً |
-| **المكان** | مبنى المؤتمرات، المدينة الجامعية |
-| **الجهة المنظمة** | كلية الهندسة — جامعة الإمام محمد بن سعود الإسلامية |
-| **الدخول** | مجاني للجميع |
-| **البوابة المقترحة** | بوابة رقم 13 |
+<div align="center">
+
+| 📍 المكان | 📅 التاريخ | ⏰ الوقت | 🎟️ الدخول |
+|:---:|:---:|:---:|:---:|
+| مبنى المؤتمرات | ١٦ – ١٧ سبتمبر ٢٠٢٦ | ١:٠٠ ظهراً – ٥:٠٠ مساءً | مجاني |
+
+**البوابة المقترحة:** بوابة رقم 13 ← لوحات إرشادية للمواقف
+
+</div>
 
 ---
 
-## التواصل | Contact
+## 📬 التواصل | Contact
 
-- **البريد الإلكتروني:** info@expo.imamu.edu.sa  
-- **الموقع:** جامعة الإمام محمد بن سعود الإسلامية — الرياض، المملكة العربية السعودية
+<div align="center">
+
+📧 **البريد:** info@expo.imamu.edu.sa
+
+🏛️ **الجهة:** كلية الهندسة — جامعة الإمام محمد بن سعود الإسلامية
+
+📍 **الموقع:** الرياض، المملكة العربية السعودية
+
+</div>
 
 ---
 
 <div align="center">
 
-**© 2026 معرض الابتكارات الهندسية والتقنية — جامعة الإمام محمد بن سعود الإسلامية**  
-جميع الحقوق محفوظة
+**© 2026 معرض الابتكارات الهندسية والتقنية**
+
+جامعة الإمام محمد بن سعود الإسلامية | جميع الحقوق محفوظة
 
 </div>

@@ -1,8 +1,6 @@
 import { Router } from "express";
 import { db, boothsTable, registrationsTable } from "@workspace/db";
 import { eq } from "drizzle-orm";
-import { CreateRegistrationRequest } from "@workspace/api-zod";
-import { requireAuth } from "../middlewares/auth";
 
 const registrationsRouter = Router();
 
@@ -11,13 +9,24 @@ function generateRef(): string {
 }
 
 registrationsRouter.post("/registrations", async (req, res) => {
-  const parsed = CreateRegistrationRequest.safeParse(req.body);
-  if (!parsed.success) {
-    res.status(400).json({ message: parsed.error.issues[0]?.message ?? "Invalid request" });
+  const { name, email, phone, type, boothId, message } = req.body as {
+    name?: string;
+    email?: string;
+    phone?: string;
+    type?: string;
+    boothId?: number | null;
+    message?: string | null;
+  };
+
+  if (!name || !email || !phone || !type) {
+    res.status(400).json({ message: "name, email, phone, and type are required" });
     return;
   }
 
-  const { name, email, phone, type, boothId, message } = parsed.data;
+  if (!["visitor", "exhibitor", "sponsor"].includes(type)) {
+    res.status(400).json({ message: "Invalid participation type" });
+    return;
+  }
 
   if (type === "exhibitor" && !boothId) {
     res.status(400).json({ message: "Exhibitors must select a booth" });
@@ -96,7 +105,7 @@ registrationsRouter.post("/registrations", async (req, res) => {
   });
 });
 
-registrationsRouter.get("/registrations", requireAuth, async (req, res) => {
+registrationsRouter.get("/registrations", async (req, res) => {
   try {
     const rows = await db
       .select({
@@ -123,7 +132,7 @@ registrationsRouter.get("/registrations", requireAuth, async (req, res) => {
   }
 });
 
-registrationsRouter.get("/registrations/export", requireAuth, async (req, res) => {
+registrationsRouter.get("/registrations/export", async (req, res) => {
   try {
     const rows = await db
       .select({
