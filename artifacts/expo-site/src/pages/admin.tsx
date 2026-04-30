@@ -11,7 +11,16 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { ExpoLogo } from "@/components/ExpoLogo";
 
+const DEMO_MODE = import.meta.env.VITE_DEMO_MODE === "true";
 const STORAGE_KEY = "admin_token";
+
+const DEMO_REGISTRATIONS: Registration[] = [
+  { id: 1, refNumber: "EXP-DEMO01", name: "أحمد العلي", email: "ahmed@example.com", phone: "0501234567", type: "visitor", boothId: null, boothNumber: null, boothHall: null, message: null, createdAt: "2026-09-16T09:00:00Z" },
+  { id: 2, refNumber: "EXP-DEMO02", name: "سارة المحمد", email: "sara@company.com", phone: "0559876543", type: "exhibitor", boothId: 1, boothNumber: "A-01", boothHall: "قاعة A", message: "نود عرض أحدث منتجاتنا", createdAt: "2026-09-16T10:30:00Z" },
+  { id: 3, refNumber: "EXP-DEMO03", name: "شركة التقنية المتقدمة", email: "info@techco.sa", phone: "0512345678", type: "sponsor", boothId: null, boothNumber: null, boothHall: null, message: "مهتمون برعاية الفعالية", createdAt: "2026-09-16T11:15:00Z" },
+  { id: 4, refNumber: "EXP-DEMO04", name: "محمد القحطاني", email: "m.alqahtani@edu.sa", phone: "0534567890", type: "visitor", boothId: null, boothNumber: null, boothHall: null, message: null, createdAt: "2026-09-17T08:45:00Z" },
+  { id: 5, refNumber: "EXP-DEMO05", name: "نورة الزهراني", email: "noura@startup.sa", phone: "0578901234", type: "exhibitor", boothId: 2, boothNumber: "B-03", boothHall: "قاعة B", message: null, createdAt: "2026-09-17T13:00:00Z" },
+];
 
 type FilterTab = "all" | "visitor" | "exhibitor" | "sponsor";
 
@@ -43,16 +52,18 @@ export default function Admin() {
 
   const hasToken = Boolean(token);
 
-  const { data: registrations, isLoading, error, refetch } = useListRegistrations({
+  const { data: apiRegistrations, isLoading, error, refetch } = useListRegistrations({
     query: {
-      enabled: hasToken,
+      enabled: hasToken && !DEMO_MODE,
       queryKey: ["/api/registrations", token],
       retry: false,
     } as UseQueryOptions<Registration[]>,
     request: { headers: { Authorization: `Bearer ${token}` } },
   });
 
-  const isUnauthorized = Boolean(error && (error as { status?: number })?.status === 401);
+  const registrations = DEMO_MODE ? (hasToken ? DEMO_REGISTRATIONS : undefined) : apiRegistrations;
+
+  const isUnauthorized = Boolean(!DEMO_MODE && error && (error as { status?: number })?.status === 401);
 
   useEffect(() => {
     if (isUnauthorized) {
@@ -64,7 +75,7 @@ export default function Admin() {
 
   const showDashboard = hasToken && registrations !== undefined;
   const showLoginForm = !hasToken || (!showDashboard && !isLoading) || isUnauthorized;
-  const showAuthLoading = hasToken && isLoading && !registrations;
+  const showAuthLoading = !DEMO_MODE && hasToken && isLoading && !registrations;
 
   const handleLogin = (e: React.FormEvent) => {
     e.preventDefault();

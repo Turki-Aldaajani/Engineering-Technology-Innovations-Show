@@ -33,5 +33,6 @@ export default defineConfig({
   },
   define: {
     "import.meta.env.BASE_URL": JSON.stringify(`/${REPO_NAME}/`),
+    "import.meta.env.VITE_DEMO_MODE": JSON.stringify("true"),
   },
 });
