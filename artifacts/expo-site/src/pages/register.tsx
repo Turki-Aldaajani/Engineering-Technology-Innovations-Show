@@ -15,10 +15,6 @@ import {
 import { Label } from "@/components/ui/label";
 import { ExpoLogo } from "@/components/ExpoLogo";
 import { BoothMap } from "@/components/sections/booth-map";
-import {
-  useCreateRegistration,
-  useListBooths,
-} from "@workspace/api-client-react";
 import type { Registration } from "@workspace/api-client-react";
 
 interface Booth {
@@ -83,26 +79,9 @@ export default function Register() {
   const [submittedRegistration, setSubmittedRegistration] = useState<Registration | null>(null);
   const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const { data: dbBooths } = useListBooths();
-  const occupiedBoothNumbers = (dbBooths ?? [])
-    .filter(b => b.status === "occupied")
-    .map(b => b.number);
+  const occupiedBoothNumbers: string[] = [];
 
-  const { mutate: createRegistration, isPending } = useCreateRegistration({
-    mutation: {
-      onSuccess: (data) => {
-        setSubmittedRegistration(data);
-        setScreen("success");
-        setSubmitError(null);
-      },
-      onError: (err: unknown) => {
-        const data = (err as { data?: { message?: string } })?.data;
-        const message = data?.message ?? "حدث خطأ أثناء التسجيل. يرجى المحاولة مجدداً.";
-        setSubmitError(message);
-        setScreen("form");
-      },
-    },
-  });
+  const [isPending, setIsPending] = useState(false);
 
   const VISIT_OPTIONS = [
     { value: "day1", label: "يوم واحد", dates: "16 سبتمبر" },
@@ -136,16 +115,25 @@ export default function Register() {
 
   const submitToApi = () => {
     setSubmitError(null);
-    createRegistration({
-      data: {
+    setIsPending(true);
+    setTimeout(() => {
+      const fakeReg: Registration = {
+        id: Math.floor(Math.random() * 90000) + 10000,
+        refNumber: `EXP-${Math.random().toString(36).slice(2, 8).toUpperCase()}`,
         name: formData.name,
         email: formData.email,
         phone: formData.phone,
         type: formData.type as "visitor" | "exhibitor" | "sponsor",
+        boothId: selectedBooth?.id ?? null,
         boothNumber: selectedBooth?.number ?? null,
+        boothHall: selectedBooth?.hall ?? null,
         message: formData.message || null,
-      },
-    });
+        createdAt: new Date().toISOString(),
+      };
+      setIsPending(false);
+      setSubmittedRegistration(fakeReg);
+      setScreen("success");
+    }, 900);
   };
 
   const handleFormSubmit = (e: React.FormEvent) => {
